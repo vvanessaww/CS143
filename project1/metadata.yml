@@ -1,0 +1,12 @@
+---
+:id: 93013956
+:submitters:
+- :name: VANESSA ZOU WANG
+  :email: vanessawang.143@gmail.com
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2021-10-11 01:28:02.185976000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2021-10-10 18:28:02.185976000 Z
+:status: processed
+:score: 100.0

@@ -1,0 +1,1 @@
+SELECT id FROM People WHERE givenName = "Marie" and familyName = "Curie";

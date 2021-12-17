@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head><title>Actor Information page</title></head>
+<body>
+  <h1>Actor Information</h1>
+<?php                                                                                                                                                                     
+                                                                                                                                                                          
+ error_reporting(E_ALL);                                                                                                                                                  
+                                                                                                                                                                          
+                                                                                                                                                                          
+ ini_set("display_errors", "1");                                                                                                                                          
+                                                                                                                                                                          
+                                                                                                                                                                          
+ ini_set("log_errors", "1");                                                                                                                                              
+ ini_set("error_log", "/tmp/php-error.log");                                                                                                                              
+                                                                                                                                                                          
+ $id = $_GET['id'];                                                                                                                                                       
+ $conn = mysqli_connect("localhost", "cs143", "", "class_db");                                                                                                            
+ $sql = "SELECT first, last, sex, dob, dod FROM Actor WHERE id = $id;";                                                                                                   
+ $result = mysqli_query($conn, $sql);                                                                                                                                     
+ echo "<div class='table-responsive'>";
+ echo "<table class='table table-bordered table-condensed table-hover'>";
+ echo "<thead><tr><td>Name</td><td>Sex</td><td>Date of Birth</td><td>Date of Death</td></tr></thead>";
+ echo "<tbody>";
+ $row = mysqli_fetch_row($result);
+ $fullName = $row[0] . " " . $row[1];
+ $sex = $row[2];
+ $dob = $row[3];
+ if (empty($row[4])) {
+ $dod = "Still Alive";
+ } else {
+ $dod = $row[4];
+ }
+ echo "<tr><td>$fullName</td><td>$sex</td><td>$dob</td><td>$dod</td></tr>";
+ echo "</tbody>";
+ echo "</table>";
+ echo "</div>";
+
+ $sql2 = "SELECT role, title, mid FROM MovieActor, Movie WHERE id = mid AND aid = $id;";
+ $result2 = mysqli_query($conn, $sql2);
+ echo "<hr><h4>Matching Movie Results:</h4>";
+ echo "<div class='table-responsive'>";
+ echo "<table class='table table-bordered table-condensed table-hover'>";
+ echo "<thead><tr><td>Title</td><td>Role</td></tr></thead>";
+ echo "<tbody>";
+ while ($row2 = mysqli_fetch_row($result2)) {
+      $mid = $row2[2];
+      $title = $row2[1];
+      $role = $row2[0];
+      echo "<tr><td><a href='movie.php?id=$mid'>$title</td><td>$role</td></tr>";
+      }
+ echo "</tbody>";
+ echo "</table>";
+  echo "</div><hr>";
+mysqli_close($conn);
+?>
+</body>
+</html><!DOCTYPE html>
+<html>
+<body>
+
+<h1>My first PHP page</h1>
+
+<?php
+echo "Hello World!";
+?>
+
+</body
